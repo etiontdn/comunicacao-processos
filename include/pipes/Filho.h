@@ -13,8 +13,11 @@ using namespace std;
 class Filho {
     public:
         /// @brief Construtor da classe Filho
-        Filho();
+        Filho(int pipe_filho_para_pai_escrita);
         ~Filho();
+
+        /// @brief Inicia o terminal xterm com o processo filho
+        void executa();
 
         /// @brief Recebe dados do Produto do usuário e o transforma em uma instância da classe Produto
         void recebeDados();

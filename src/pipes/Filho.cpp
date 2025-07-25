@@ -29,7 +29,6 @@ void Filho::recebeDados()
     double preco;
 
     cout << "Digite o nome do produto: ";
-    cin.ignore(); // Clear the newline character from the input buffer
     getline(cin, nome);
 
     cout << "Digite o preço do produto: ";

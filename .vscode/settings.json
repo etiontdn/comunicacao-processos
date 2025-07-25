@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*_test.cpp": "cpp",
+        "string_view": "cpp"
+    }
+}

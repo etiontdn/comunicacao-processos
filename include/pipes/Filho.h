@@ -4,6 +4,9 @@
 #include <string>
 #include <unistd.h>
 #include "../models/Produto.h" 
+#define TERMINAL_EMULATOR "xterm"
+#define TERMINAL_ARG "-e"
+
 using namespace std;
 
 /**
@@ -17,16 +20,13 @@ class Filho {
         ~Filho();
 
         /// @brief Inicia o terminal xterm com o processo filho
-        void executa();
+        static void executa(int pipe_filho_para_pai_escrita, string executavel_filho);
 
         /// @brief Recebe dados do Produto do usuário e o transforma em uma instância da classe Produto
         void recebeDados();
 
         /// @brief Envia respostas de volta ao pai
         void enviaRespostas();
-
-        /// @brief Finaliza o processo filho, fechando pipes e limpando recursos
-        void finaliza();
     private:
         Produto *produto; // Produto sendo processado pelo filho
         int fd_escrita_pai; // File descriptor para escrita no pipe do pai

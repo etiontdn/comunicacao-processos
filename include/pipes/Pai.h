@@ -10,9 +10,6 @@
 #include "../models/Produto.h" 
 using namespace std;
 
-#define TERMINAL_EMULATOR "xterm"
-#define TERMINAL_ARG "-e"
-
 /**
  * A classe Pai gerencia as funções do processo pai, incluindo: criação de processos filhos, comunicação via pipes, e monitoramento dos filhos.
 **/

@@ -44,8 +44,7 @@ int Pai::criaFilho()
     // Processo filho
     else if (pid == 0)
     {
-        Filho filho(pipe_filho_para_pai[1]);
-        filho.executa();
+        Filho::executa(pipe_filho_para_pai[1], executavel_filho);
     }
 
     // Processo pai

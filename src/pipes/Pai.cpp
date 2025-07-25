@@ -141,16 +141,16 @@ void Pai::monitoraFilhos()
             filhos_ativos.push_back(child_pid);
         }
     }
-    // Update the lists of active FDs and PIDs for the next iteration
+    // Atualiza lista de fds e filhos ativos
     fds_leitura = fds_leitura_ativos;
     filhos = filhos_ativos;
 
-    // Also reap any zombie children periodically (non-blocking waitpid)
+    // Finalizando filhos zumbis
     int status;
     pid_t terminated_pid;
     while ((terminated_pid = waitpid(-1, &status, WNOHANG)) > 0)
     {
-        cout << "Parent: Reaped terminated child (terminal) " << terminated_pid << " with status " << status << endl;
+        cout << "Pai: Finalizado filho (terminal) " << terminated_pid << " com status " << status << endl;
     }
 }
 

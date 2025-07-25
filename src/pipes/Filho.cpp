@@ -2,6 +2,8 @@
 #include "../../include/models/Produto.h"
 #include <iostream>
 #include <unistd.h>
+#include <cstring>
+#include <vector>
 using namespace std;
 
 Filho::Filho(int pipe_filho_para_pai_escrita)
@@ -43,9 +45,13 @@ void Filho::enviaRespostas()
     if (produto)
     {
         podProduto pod = produto->getPod();
-        
-        
-        if (write(fd_escrita_pai, resposta.c_str(), resposta.length()) == -1)
+
+        // Transforma POD em binário para enviar via pipe
+
+        std::vector<char> byte_array(sizeof(podProduto));
+        std::memcpy(byte_array.data(), &pod, sizeof(podProduto));
+
+        if (write(fd_escrita_pai, byte_array.data(), byte_array.size()) == -1)
         {
             perror("Filho: Erro ao enviar dados para o pai");
         }

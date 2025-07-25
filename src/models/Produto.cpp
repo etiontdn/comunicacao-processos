@@ -20,3 +20,10 @@ string Produto::getNome() const {
 double Produto::getPreco() const {
     return preco;
 }
+
+podProduto Produto::getPod() const {
+    podProduto pod;
+    strcpy(pod.nome, nome);
+    pod.preco = preco;
+    return pod;
+}

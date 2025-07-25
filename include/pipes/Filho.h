@@ -31,8 +31,6 @@ class Filho {
         Produto *produto; // Produto sendo processado pelo filho
         int fd_escrita_pai; // File descriptor para escrita no pipe do pai
         pid_t pid_filho; // PID do processo filho
-        string mensagem_resposta; // Mensagem de resposta a ser enviada ao pai
-        char buffer[256]; // Buffer para leitura/escrita de dados
 };
 
 

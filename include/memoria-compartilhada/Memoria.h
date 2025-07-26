@@ -2,11 +2,11 @@
 #define MEMORIA_H
 
 #include <string>
-#include <sys/mman.h>  // Para shm_open, ftruncate, mmap, munmap, shm_unlink
-#include <fcntl.h>     // Para O_CREAT, O_RDWR
-#include <unistd.h>    // Para ftruncate
-#include <cstring>     // Para strlen, strcpy
-#include <semaphore.h> // Para sem_open, sem_wait, sem_post, sem_unlink
+#include <sys/mman.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <cstring>
+#include <semaphore.h>
 using namespace std;
 
 #define SHM_SIZE 256
@@ -20,37 +20,35 @@ using namespace std;
 class Memoria
 {
 public:
-    Memoria() {};
-    ~Memoria() {};
+    Memoria();
+    ~Memoria();
 
-    /// @brief Cria e abre a memória compartilhada.
+    /// @brief Cria e abre a memória compartilhada para leitura e escrita.
+    void criarEAbrirMemoria();
+
+    /// @brief Cria um semáforo para sincronização de acesso à memória compartilhada.
+    void criarEAbrirSemaforo();
+
+    /// @brief Abre a memória compartilhada existente para leitura e escrita.
+    void abrirMemoria();
+
+    /// @brief Abre o semáforo existente para sincronização de acesso à memória compartilhada.
+    void abrirSemaforo();
+
+    /// @brief Obtém o ponteiro da memória compartilhada.
     /// @return Retorna um ponteiro para a memória compartilhada ou nullptr em caso de erro
-    void criarEAbrirMemoria()
-    {
-        // Implementação para criar e abrir a memória compartilhada
-        // Retorna um ponteiro para a memória compartilhada
-        return;
-    }
+    void *getMemoria();
 
-    /// @brief Abre a memória compartilhada existente.
-    /// @return Retorna um ponteiro para a memória compartilhada ou nullptr em caso de erro
-    void abrirMemoria()
-    {
-        // Implementação para abrir a memória compartilhada
-        // Retorna um ponteiro para acesso à memória compartilhada
-        return;
-    }
+    /// @brief Fecha o semáforo
+    void fecharSemaforo();
 
-    void *getMemoria()
-    {
-        // Implementação para obter o ponteiro da memória compartilhada
-        // Retorna um ponteiro para a memória compartilhada
-        return nullptr;
-    }
+    /// @brief Fecha a memória compartilhada e libera os recursos alocados do sistema
+    void liberarMemoria();
 
 private:
-    void *memoria;
-    sem_t *semaforo;
+    int shm_fd;      // Descritor de arquivo para a memória compartilhada
+    void *memoria;   // Ponteiro para a memória compartilhada
+    sem_t *semaforo; // Ponteiro para o semáforo de sincronização
 };
 
 #endif

@@ -36,8 +36,12 @@ public:
     void abrirSemaforo();
 
     /// @brief Obtém o ponteiro da memória compartilhada.
-    /// @return Retorna um ponteiro para a memória compartilhada ou nullptr em caso de erro
+    /// @return Retorna um ponteiro para a memória compartilhada
     void *getMemoria();
+
+    /// @brief Obtém o ponteiro do semáforo.
+    /// @return Retorna um ponteiro para o semáforo
+    sem_t *getSemaforo();
 
     /// @brief Fecha o semáforo
     void fecharSemaforo();

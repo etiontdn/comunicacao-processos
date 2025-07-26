@@ -83,6 +83,7 @@ void Memoria::liberarMemoria()
     {
         cerr << "Erro ao desvincular memória compartilhada." << endl;
     }
+    close(shm_fd); // Fecha o descritor de arquivo
 }
 
 Memoria::Memoria() : shm_fd(-1), memoria(nullptr), semaforo(nullptr)
@@ -91,16 +92,9 @@ Memoria::Memoria() : shm_fd(-1), memoria(nullptr), semaforo(nullptr)
 
 Memoria::~Memoria()
 {
-    if (memoria != nullptr)
-    {
-        liberarMemoria();
-    }
-    if (semaforo != nullptr)
-    {
-        fecharSemaforo();
-    }
-    if (shm_fd != -1)
-    {
-        close(shm_fd);
-    }
+}
+
+sem_t *Memoria::getSemaforo()
+{
+    return semaforo;
 }

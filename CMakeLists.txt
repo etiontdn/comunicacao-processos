@@ -8,7 +8,6 @@ add_library(memoria-compartilhada src/memoria-compartilhada/Memoria.cpp)
 target_link_libraries(pipes models)
 target_link_libraries(memoria-compartilhada rt)
 
-add_executable(main src/main.cpp)
 add_executable(processo_pai src/pipes/processo_pai.cpp)
 add_executable(processo_filho src/pipes/processo_filho.cpp)
 add_executable(quadro_leitor src/memoria-compartilhada/quadro_leitor.cpp)

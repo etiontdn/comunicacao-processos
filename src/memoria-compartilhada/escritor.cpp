@@ -15,6 +15,7 @@ int main() {
         cout << "Memória compartilhada acessada com sucesso." << endl;
     } else {
         cerr << "Falha ao acessar a memória compartilhada." << endl;
+        return 1;
     }
 
     // Obtém o ponteiro do semáforo
@@ -23,6 +24,7 @@ int main() {
         cout << "Semáforo acessado com sucesso." << endl;
     } else {
         cerr << "Falha ao acessar o semáforo." << endl;
+        return 1;
     }
 
     string mensagem;

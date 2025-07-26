@@ -47,6 +47,10 @@ int main()
 
     while (true)
     {
+        if (interrupcao.load())
+        {
+            break;
+        }
         // Aguarda 5 segundos antes de ler novamente
         sleep(5);
 
@@ -61,13 +65,9 @@ int main()
         }
 
         sem_post(semaforo); // Libera o semáforo após a leitura
-
-        if (interrupcao.load())
-        {
-            break;
-        }
     }
 
+    cout << "Liberando memória e fechando semáforo..." << endl;
     memoria.liberarMemoria();
     memoria.fecharSemaforo();
     return 0;
